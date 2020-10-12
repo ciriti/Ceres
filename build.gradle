@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'io.github.ciriti'
-version '0.2.4-SNAPSHOT'
+version '0.2.5-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -18,12 +18,18 @@ publishing {
     }
 }
 
+pluginBundle {
+    website = 'https://github.com/ciriti/Ceres.git'
+    vcsUrl = 'https://github.com/ciriti/Ceres.git'
+    tags = ['kotlin', 'KMP', 'framework', 'ios']
+}
+
 gradlePlugin {
     plugins {
         greetingsPlugin {
             id = 'io.github.ciriti.ceres'
-            displayName = 'ciriti greetings'
-            description = 'test of publishing'
+            displayName = 'Ceres kmp'
+            description = 'This plugin will help you to crete an ios framework out of a KMP project'
             implementationClass = 'io.ciriti.ceres.GreetingPlugin'
         }
     }
@@ -58,8 +64,8 @@ publishing {
             name = "Ceres" //  optional target repository name
             url = "https://oss.sonatype.org/content/repositories/snapshots"
             credentials {
-                username = 'ciriti'
-                password = '1r1t1c4rM1984.'
+                username = MVN_USERNAME
+                password = MVN_PASSWORD
             }
         }
     }

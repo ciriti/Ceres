@@ -1,0 +1,61 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'com.gradle.plugin-publish'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'maven-publish'
+}
+
+group GROUP
+version VERSION
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/ciriti/Ceres.git'
+    vcsUrl = 'https://github.com/ciriti/Ceres.git'
+    tags = ['kotlin', 'KMP', 'framework', 'ios']
+}
+
+gradlePlugin {
+    plugins {
+        greetingsPlugin {
+            id = 'io.github.ciriti.ceres'
+            displayName = 'Ceres kmp'
+            description = 'This plugin will help you to crete an ios framework out of a KMP project'
+            implementationClass = 'io.ciriti.ceres.GreetingPlugin'
+        }
+    }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+publishing {
+//    publications {
+//        jar(MavenPublication) {
+//            groupId = group
+//            artifactId = 'ceres'
+//            artifact("$buildDir/libs/${project.getName()}-${version}.jar")
+//        }
+//    }
+    repositories {
+        maven {
+            name = "Ceres" //  optional target repository name
+            url = "https://oss.sonatype.org/content/repositories/snapshots"
+            credentials {
+                username = MVN_USERNAME
+                password = MVN_PASSWORD
+            }
+        }
+    }
+}

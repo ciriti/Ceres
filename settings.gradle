@@ -1,2 +1,4 @@
+include ':sample'
+include ':ceres'
 rootProject.name = 'ceres'
 

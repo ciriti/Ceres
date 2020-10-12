@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "io.github.ciriti:ceres:+" // this is for testing with maven local
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+apply plugin: 'java-library'
+apply plugin: 'io.github.ciriti.ceres'
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+
+hello {
+    message = "Porco dio"
+    recipient = "Carmelo"
+    recipient2 = "Carmelo"
+}
+
+

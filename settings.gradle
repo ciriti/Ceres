@@ -1,3 +1,4 @@
+include ':sample-kt'
 include ':sample'
 include ':ceres'
 rootProject.name = 'ceres'

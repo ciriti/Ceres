@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+    id 'io.github.ciriti.ceres'
+}
+
+frameworkConfig {
+    name = "Carmelo"
+    author = "PD"
+    version = "1.0.1"
+    homepage = "http://ciriti.com"
+    summary = "Test extension"
+    license = "test license"
+    platform = "test platform"
+    source = "test source"
+}

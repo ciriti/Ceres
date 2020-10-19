@@ -1,6 +1,5 @@
 package io.ciriti.ceres
 
-import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.testfixtures.ProjectBuilder
 import org.gradle.testkit.runner.GradleRunner
@@ -11,6 +10,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
 import java.io.File
+import io.ciriti.ceres.Constants.CREATE_PODSPEC_TASK
+import io.ciriti.ceres.Constants.PLUGIN_GROUP_CERES
+import io.ciriti.ceres.Constants.PLUGIN_ID
 
 class KmmFrameworkPluginTest {
 
@@ -18,6 +20,15 @@ class KmmFrameworkPluginTest {
     var testProjectDir = TemporaryFolder()
     private lateinit var buildFile: File
     private lateinit var gradleRunner: GradleRunner
+
+    private val project by lazy { ProjectBuilder.builder().build() }
+    private val gradleRunner4Project by lazy {
+        GradleRunner.create()
+            .withPluginClasspath()
+            .withDebug(true)
+            .withProjectDir(project.rootProject.projectDir)
+    }
+
 
     @Before
     fun setup() {
@@ -48,6 +59,30 @@ class KmmFrameworkPluginTest {
         assertTrue(testProjectDir.root.resolve("build/ios_artifacts/generated/xcode-frameworks-unspecified/RickAndMortyData.podspec").exists())
 
         assertEquals(TaskOutcome.SUCCESS, result.task(":createPodspec")!!.outcome)
+    }
+
+    @Test
+    fun `GIVEN a plugin CHECK the group of its task {codeLines}`() {
+        project.buildFile.apply {
+            createNewFile()
+            appendText("build.gradle.txt".readFileContent())
+        }
+        project.pluginManager.apply(PLUGIN_ID)
+        assertTrue(
+            project.pluginManager
+                .hasPlugin(PLUGIN_ID)
+        )
+        val task: Task = project.tasks.getByName(CREATE_PODSPEC_TASK)
+        assertEquals(PLUGIN_GROUP_CERES, task.group)
+
+        val res = gradleRunner4Project
+            .withArguments(CREATE_PODSPEC_TASK)
+            .build()
+
+//        assertTrue(res.output.contains("Hello from CodeLinesCounterPlugin"))
+        assertTrue(project.getPodspecPath("RickAndMortyData.podspec").exists())
+        assertEquals(TaskOutcome.SUCCESS, res.task(":$CREATE_PODSPEC_TASK")!!.outcome)
+
     }
 
 }

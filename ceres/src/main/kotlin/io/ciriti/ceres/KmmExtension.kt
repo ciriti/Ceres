@@ -9,6 +9,5 @@ open class KmmExtension {
     var license : String = ""
     var platform : String = ""
     var source : String = ""
-    var testVersion : String = ""
 
 }

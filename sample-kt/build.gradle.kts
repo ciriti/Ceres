@@ -16,6 +16,9 @@ buildscript {
     }
 }
 
+version="0.1-SNAPSHOT"
+group="pd.mlm"
+
 //apply plugin: 'java-library'
 apply(plugin = "java-library")
 //apply plugin: 'io.github.ciriti.ceres'

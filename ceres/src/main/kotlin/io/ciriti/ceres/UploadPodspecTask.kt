@@ -1,7 +1,6 @@
 package io.ciriti.ceres
 
 import org.gradle.api.tasks.Exec
-import org.gradle.api.tasks.Input
 import java.io.File
 
 open class UploadPodspecTask : Exec() {
@@ -11,7 +10,7 @@ open class UploadPodspecTask : Exec() {
     }
 
     init {
-        group = Constants.GROUP_CERES
+        group = Constants.PLUGIN_GROUP_CERES
         description = DESCRIPTION
         workingDir = File(project.buildDir.path)
         commandLine = listOf("ls")

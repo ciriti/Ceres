@@ -65,7 +65,7 @@ class KmmFrameworkPluginTest {
     fun `GIVEN a plugin CHECK the group of its task {codeLines}`() {
         project.buildFile.apply {
             createNewFile()
-            appendText("build.gradle.txt".readFileContent())
+            appendText("build.gradle.txt".readResourceFileContent())
         }
         project.pluginManager.apply(PLUGIN_ID)
         assertTrue(
@@ -80,7 +80,7 @@ class KmmFrameworkPluginTest {
             .build()
 
 //        assertTrue(res.output.contains("Hello from CodeLinesCounterPlugin"))
-        assertTrue(project.getPodspecPath("RickAndMortyData.podspec").exists())
+        assertTrue(project.getPodspecFile("RickAndMortyData.podspec").exists())
         assertEquals(TaskOutcome.SUCCESS, res.task(":$CREATE_PODSPEC_TASK")!!.outcome)
 
     }

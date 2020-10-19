@@ -3,19 +3,20 @@
 
 package io.ciriti.ceres
 
+import org.gradle.api.Project
 import org.gradle.internal.impldep.org.junit.Assert
 import java.io.File
 
 /**
  * Receive file.json and return the content as string
  */
-fun String.readFileContent(): String = Thread.currentThread()
+fun String.readResourceFileContent(): String = Thread.currentThread()
     .contextClassLoader
     .getResourceAsStream(this)
     .bufferedReader().use { it.readText() }
     .trimIndent()
 
-fun String.getFolderByName() : File =
+fun String.getResourceFolderByName() : File =
     File(
         Thread.currentThread()
             .contextClassLoader
@@ -23,7 +24,7 @@ fun String.getFolderByName() : File =
             .file
     )
 
-fun String.getFileByName() : File =
+fun String.getResourceFileByName() : File =
     File(
         Thread.currentThread()
             .contextClassLoader
@@ -33,4 +34,5 @@ fun String.getFileByName() : File =
 
 
 infix fun <T> T.assertEquals(t: T) = apply { Assert.assertEquals(t, this) }
+fun <T : Boolean> T.assertTrue() = apply { Assert.assertTrue(this) }
 fun <T> T?.assertNotNull(): T = apply { Assert.assertNotNull(this) }!!

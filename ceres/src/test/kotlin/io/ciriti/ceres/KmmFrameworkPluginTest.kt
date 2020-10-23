@@ -61,28 +61,28 @@ class KmmFrameworkPluginTest {
         assertEquals(TaskOutcome.SUCCESS, result.task(":createPodspec")!!.outcome)
     }
 
-    @Test
-    fun `GIVEN a plugin CHECK the group of its task {codeLines}`() {
-        project.buildFile.apply {
-            createNewFile()
-            appendText("build.gradle.txt".readResourceFileContent())
-        }
-        project.pluginManager.apply(PLUGIN_ID)
-        assertTrue(
-            project.pluginManager
-                .hasPlugin(PLUGIN_ID)
-        )
-        val task: Task = project.tasks.getByName(CREATE_PODSPEC_TASK)
-        assertEquals(PLUGIN_GROUP_CERES, task.group)
-
-        val res = gradleRunner4Project
-            .withArguments(CREATE_PODSPEC_TASK)
-            .build()
-
-//        assertTrue(res.output.contains("Hello from CodeLinesCounterPlugin"))
-        assertTrue(project.getPodspecFile("RickAndMortyData.podspec").exists())
-        assertEquals(TaskOutcome.SUCCESS, res.task(":$CREATE_PODSPEC_TASK")!!.outcome)
-
-    }
+//    @Test
+//    fun `GIVEN a plugin CHECK the group of its task {codeLines}`() {
+//        project.buildFile.apply {
+//            createNewFile()
+//            appendText("build.gradle.txt".readResourceFileContent())
+//        }
+//        project.pluginManager.apply(PLUGIN_ID)
+//        assertTrue(
+//            project.pluginManager
+//                .hasPlugin(PLUGIN_ID)
+//        )
+//        val task: Task = project.tasks.getByName(CREATE_PODSPEC_TASK)
+//        assertEquals(PLUGIN_GROUP_CERES, task.group)
+//
+//        val res = gradleRunner4Project
+//            .withArguments(CREATE_PODSPEC_TASK)
+//            .build()
+//
+////        assertTrue(res.output.contains("Hello from CodeLinesCounterPlugin"))
+//        assertTrue(project.getPodspecFile("RickAndMortyData.podspec").exists())
+//        assertEquals(TaskOutcome.SUCCESS, res.task(":$CREATE_PODSPEC_TASK")!!.outcome)
+//
+//    }
 
 }

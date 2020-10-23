@@ -33,7 +33,7 @@ open class CreatePodspecTask @Inject constructor(
                     """.trimIndent()
                 )
             }
-//            .createNewFile()
+            .createNewFile()
     }
 
 }

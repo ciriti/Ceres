@@ -3,6 +3,10 @@ plugins {
     id 'io.github.ciriti.ceres'
 }
 
+apply plugin: 'io.github.ciriti.ceres'
+
+version = "1.0-SNAPSHOOT"
+
 frameworkConfig {
     name = "Carmelo"
     author = "PD"

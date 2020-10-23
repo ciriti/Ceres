@@ -1,3 +1,5 @@
+import io.ciriti.ceres.dsl.frameworkConfig
+import io.ciriti.ceres.dsl.frameworkTask
 import kotlinx.coroutines.internal.artificialFrame
 
 buildscript {
@@ -29,24 +31,25 @@ configure<JavaPluginConvention> {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-configure<io.ciriti.ceres.KmmExtension>{
-    name = "Carmelo"
-    author = "PD"
+/**
+ * another way to configure it:
+ *
+ *  configure<io.ciriti.ceres.KmmExtension>{
+ *      name = "Framework name"
+ *      author = "Author"
+ *  }
+ *
+ */
+
+frameworkConfig {
+    name = "Framework name"
+    author = "Author"
 }
 
-//hello {
-//    message = "Porco dio"
-//    recipient = "Carmelo"
-//    recipient2 = "Carmelo"
-//}
-
-//frameworkConfig {
-//    name = "Achille"
-//    author = "Achillele dog"
-//    testVersion = "pd"
-//    person{
-//        name = "Carmelo"
-//    }
-//}
+tasks.frameworkTask{
+    message = "test message"
+    recipient = "rec"
+    recipient2 = "rec2"
+}
 
 

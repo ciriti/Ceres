@@ -1,6 +1,7 @@
 package io.ciriti.ceres
 
 import org.gradle.api.tasks.Exec
+import org.gradle.api.tasks.TaskAction
 import java.io.File
 
 open class UploadPodspecTask : Exec() {

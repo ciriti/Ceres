@@ -17,18 +17,7 @@ class KmmFrameworkPlugin : Plugin<Project> {
 
         project.tasks.create("createPodspec", CreatePodspecTask::class.java, "RickAndMortyData.podspec", extension)
 
-        project.tasks.create("framework", IosFrameworkTask::class.java){
-            this.extension = extension
-//            it.extension = extension
-        }.doLast {
-
-            println(
-                """
-                name: ${extension.name}
-                author: ${extension.author}
-            """.trimIndent()
-            )
-        }
+        project.tasks.create("framework", IosFrameworkTask::class.java, extension)
 
     }
 }
